@@ -1,0 +1,6 @@
+#!/bin/bash
+
+export INPUT_DIR=/input
+export OUTPUT_DIR=/output
+export CACHE_DIR=/cache
+export WORKSPACE_DIR=/workspace
