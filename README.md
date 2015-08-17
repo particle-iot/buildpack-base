@@ -4,10 +4,12 @@ This image should be used as a base for other buildpacks.
 ## Building image
 
 ```bash
-$ git clone git@github.com:suda/buildpack-base.git
-$ cd buildpack-base
-$ docker build -t particle/buildpack-base .
+$ export BUILDPACK_IMAGE=base
+$ git clone "git@github.com:suda/buildpack-${BUILDPACK_IMAGE}.git"
+$ cd buildpack-$BUILDPACK_IMAGE
+$ docker build -t particle/buildpack-$BUILDPACK_IMAGE .
 ```
+
 
 ## Inheriting image
 

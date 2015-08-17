@@ -1,4 +1,4 @@
-clone_repo() {
+clone-repo() {
   IFS='#' read -ra URL <<< "$1"
   GIT_URL=${URL[0]}
   GIT_COMMIT_ISH=${URL[1]}
