@@ -1,12 +1,12 @@
 #!/bin/bash
 TIME_START=`date +%s.%N`
 
+# Load helper functions
+for file in lib/*.bash ; do source "$file"; done
+
 # Setup constants
 run_hook /hooks/env
 run_hook /hooks/post-env
-
-# Load helper functions
-for file in lib/*.bash ; do source "$file"; done
 
 # Start logging to file
 exec > >(tee $OUTPUT_DIR/run.log)
