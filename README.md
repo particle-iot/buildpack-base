@@ -18,7 +18,7 @@ FROM particle/buildpack-base
 
 # ...
 
-ADD . /
+COPY foo /foo
 ```
 
 ### Using hooks
@@ -38,3 +38,9 @@ When running container use `-v` argument to specify local dirs which will be map
 * `/output` - after build will contain logs and build artifacts
 * `/cache` - temp directory to store intermediate files
 * `/ssh` - directory containing SSH keys (will be copied to `~/.ssh`)
+
+### Normalization of paths and filenames
+
+Outputed firmware binary should be named `firmware.bin` unless compile produces more binaries and their filenames have to be preserved.
+
+`stderr` file paths should start with `$WORKSPACE_DIR/` (this should be the root of a project). `find-and-replace-in` function can be used to replace whatever root dir is.
