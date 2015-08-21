@@ -29,3 +29,12 @@ When creating your own buildpack you can create your own hooks in `/hooks` direc
 * `pre-build` - prepare workspace before build
 * `build` - invoke build command
 * `post-build` - clean up after build
+
+### Defined volumes
+
+When running container use `-v` argument to specify local dirs which will be mapped to those volumes.
+
+* `/input` - should contain all project files
+* `/output` - after build will contain logs and build artifacts
+* `/cache` - temp directory to store intermediate files
+* `/ssh` - directory containing SSH keys (will be copied to `~/.ssh`)

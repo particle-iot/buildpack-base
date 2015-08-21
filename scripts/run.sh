@@ -6,14 +6,19 @@ for file in lib/*.bash ; do source "$file"; done
 
 # Setup constants
 run-hook /hooks/env
+
+# Start logging to file
+exec > >(tee $OUTPUT_DIR/run.log)
+exec 2> >(tee $OUTPUT_DIR/stderr.log)
+
+# Run env hook
 run-hook /hooks/post-env
 
 # Copy input files to workspace
 cp -r $INPUT_DIR/. $WORKSPACE_DIR
 
-# Start logging to file
-exec > >(tee $OUTPUT_DIR/run.log)
-exec 2> >(tee $OUTPUT_DIR/stderr.log)
+# Copy SSH keys
+cp -r /ssh/. /root/.ssh
 
 # Run the hooks
 run-hook /hooks/pre-build
@@ -23,3 +28,4 @@ run-hook /hooks/post-build
 TIME_END=`date +%s.%N`
 RUNTIME=`echo "$TIME_END $TIME_START" | awk '{print $1-$2}'`
 echo "Finished in: $RUNTIME seconds"
+echo $RUNTIME > $OUTPUT_DIR/runtime.log
