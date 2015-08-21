@@ -4,3 +4,6 @@ export INPUT_DIR=/input
 export OUTPUT_DIR=/output
 export CACHE_DIR=/cache
 export WORKSPACE_DIR=/workspace
+export RUN_LOG=$OUTPUT_DIR/run.log
+export STDERR_LOG=$OUTPUT_DIR/stderr.log
+export ELAPSED_LOG=$OUTPUT_DIR/elapsed.log
