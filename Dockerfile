@@ -6,5 +6,5 @@ RUN apt-get update
 RUN apt-get -y install git
 
 ADD . /
-VOLUME ["/input", "/ouput", "/cache", "/ssh"]
+VOLUME ["/input", "/output", "/cache", "/ssh"]
 CMD ["/scripts/run.sh"]
