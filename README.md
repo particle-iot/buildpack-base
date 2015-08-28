@@ -44,3 +44,19 @@ Outputed firmware binary should be named `firmware.bin` unless compile produces 
 
 `stderr` file paths should start with `$WORKSPACE_DIR/` (this should be the root of a project).
 `find-and-replace-in` function can be used to replace whatever root dir is.
+
+### Helper functions
+
+#### `clone-repo REPO_URL CLONE_DIR`
+Will clone `REPO_URL` to `CLONE_DIR` if it doesn't exist.
+
+`REPO_URL` can target tags or branches by using hash notation i.e.: `https://github.com/spark/core-common-lib.git#compile-server2`
+
+#### `copy-to-output GLOB`
+Copy all files matching `GLOB` to output dir.
+
+#### `find-and-replace-in FROM TO FILE`
+Replaces all occurrences of `FROM` to `TO` in `FILE`.
+
+#### `log-size ELF_FILE`
+Logs `arm-none-eabi-size` of `ELF_FILE` to `memory-use.log` file in output dir.
