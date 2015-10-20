@@ -4,7 +4,7 @@ Buildpacks inherit and extend other images to separate common flow and logic in 
 This image provides [main flow](#flow) and some [helper functions](#helper-functions) that can be used by other images by [inheriting it](#inheriting-image).
 
 | |
-|-|
+|---|
 |  [Particle firmware](https://github.com/spark/firmware-buildpack-builder)  |
 | [HAL](https://github.com/spark/buildpack-hal) / [Legacy](https://github.com/spark/buildpack-0.3.x)   |
 | [Wiring preprocessor](https://github.com/spark/buildpack-arduino-preprocessor) |
