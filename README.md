@@ -3,15 +3,13 @@
 Buildpacks inherit and extend other images to separate common flow and logic in OOP manner.
 This image provides [main flow](#flow) and some [helper functions](#helper-functions) that can be used by other images by [inheriting it](#inheriting-image).
 
-	+---------------------+
-	|  Particle firmware  |
-	+---------------------+
-	| [HAL](https://github.com/spark/buildpack-hal)      | [Legacy](https://github.com/spark/buildpack-0.3.x)   |
-	+----------+----------+
-	| [Wiring preprocessor](https://github.com/spark/buildpack-arduino-preprocessor) |
-	+---------------------+
-	|        Base         | <- You are here
-	+---------------------+
+| |
+|-|
+|  [Particle firmware](https://github.com/spark/firmware-buildpack-builder)  |
+| [HAL](https://github.com/spark/buildpack-hal) / [Legacy](https://github.com/spark/buildpack-0.3.x)   |
+| [Wiring preprocessor](https://github.com/spark/buildpack-arduino-preprocessor) |
+| **Base (you are here)** |
+
 
 ## Building image
 
@@ -21,6 +19,16 @@ $ git clone "git@github.com:spark/buildpack-${BUILDPACK_IMAGE}.git"
 $ cd buildpack-$BUILDPACK_IMAGE
 $ docker build -t particle/buildpack-$BUILDPACK_IMAGE .
 ```
+
+## Flow
+
+Image entrypoint is [run.sh script](scripts/run.sh). It will:
+1. load helper functions from [lib directory](lib)
+* Init environment variables with [defaults](hooks/env)
+* Setup logging
+* Copy input files to workspace directory
+* Execute build (by calling `/hooks/build` script)
+* Cleanup [output](#normalization-of-paths-and-filenames)
 
 ## Inheriting image
 
