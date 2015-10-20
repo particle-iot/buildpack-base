@@ -1,5 +1,17 @@
 # Buildpack base
-This image should be used only as a base for other buildpacks.
+
+Buildpacks inherit and extend other images to separate common flow and logic in OOP manner.
+This image provides [main flow](#flow) and some [helper functions](#helper-functions) that can be used by other images by [inheriting it](#inheriting-image).
+
+	+---------------------+
+	|  Particle firmware  |
+	+---------------------+
+	| [HAL](https://github.com/spark/buildpack-hal)      | [Legacy](https://github.com/spark/buildpack-0.3.x)   |
+	+----------+----------+
+	| [Wiring preprocessor](https://github.com/spark/buildpack-arduino-preprocessor) |
+	+---------------------+
+	|        Base         | <- You are here
+	+---------------------+
 
 ## Building image
 
