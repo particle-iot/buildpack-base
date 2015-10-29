@@ -26,11 +26,11 @@ $ docker build -t particle/buildpack-$BUILDPACK_IMAGE .
 
 Image entrypoint is [run.sh script](scripts/run.sh). It will:
 1. load helper functions from [lib directory](lib)
-* Init environment variables with [defaults](hooks/env)
-* Setup logging
-* Copy input files to workspace directory
-* Execute build (by calling `/hooks/build` script)
-* Cleanup [output](#normalization-of-paths-and-filenames)
+2. Init environment variables with [defaults](hooks/env)
+3. Setup logging
+4. Copy input files to workspace directory
+5. Execute build (by calling `/hooks/build` script)
+6. Cleanup [output](#normalization-of-paths-and-filenames)
 
 ## Inheriting image
 
@@ -73,6 +73,9 @@ Outputed firmware binary should be named `firmware.bin` unless compile produces 
 Will clone `REPO_URL` to `CLONE_DIR` if it doesn't exist.
 
 `REPO_URL` can target tags or branches by using hash notation i.e.: `https://github.com/spark/core-common-lib.git#compile-server2`
+
+#### `copy-if-exists FROM TO`
+If `FROM` file exists copy it to `TO`.
 
 #### `copy-to-output GLOB`
 Copy all files matching `GLOB` to output dir.
