@@ -2,12 +2,11 @@ sudo: required
 services:
   - docker
 install:
-  - ./bin/build-image
+  - docker login --username=$DOCKER_HUB_USERNAME --password=$DOCKER_HUB_PASSWORD
 
 script:
-  - echo "Add some tests..."
-
-after_success: ./bin/push-image
+  - ./bin/build-image
+  - ./bin/push-image
 
 env:
   - DOCKER_IMAGE_NAME=particle/buildpack-0.3.x
