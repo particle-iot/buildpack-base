@@ -1,0 +1,16 @@
+sudo: required
+services:
+  - docker
+install:
+  - ./bin/build-image
+
+script:
+  - echo "Add some tests..."
+
+after_success: ./bin/push-image
+
+env:
+	- DOCKER_IMAGE_NAME=particle/buildpack-0.3.x
+notifications:
+  slack:
+    secure: VJ+tAeUzLkz4aMAshQ9ohXZb/1+DQ31kDpcZYDS5PZuXOujx57rzOBg4SKxB2awcmNS2JWlSMQRQtNUzfS15YNuLqgWVj57EQAy99QKsEvccOMELIwbpLtEyEInK5WrUk6vk9ymhk6MBT5+3JiQ4bAs5yvIxm+k8YCakV9QlnH4=
