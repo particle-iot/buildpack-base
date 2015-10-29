@@ -1,5 +1,7 @@
 # Buildpack base
 
+[![Build Status](https://magnum.travis-ci.com/spark/buildpack-base.svg?token=M4rP8W5QPGszZyem6TGE)](https://magnum.travis-ci.com/spark/buildpack-base)
+
 Buildpacks inherit and extend other images to separate common flow and logic in OOP manner.
 This image provides [main flow](#flow) and some [helper functions](#helper-functions) that can be used by other images by [inheriting it](#inheriting-image).
 
