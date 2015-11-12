@@ -9,7 +9,7 @@ This image provides [main flow](#flow) and some [helper functions](#helper-funct
 |---|
 |  [Particle firmware](https://github.com/spark/firmware-buildpack-builder)  |
 | [HAL](https://github.com/spark/buildpack-hal) / [Legacy](https://github.com/spark/buildpack-0.3.x)   |
-| [Wiring preprocessor](https://github.com/spark/buildpack-arduino-preprocessor) |
+| [Wiring preprocessor](https://github.com/spark/buildpack-wiring-preprocessor) |
 | **Base (you are here)** |
 
 
