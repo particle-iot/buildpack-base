@@ -1,10 +1,7 @@
-FROM ubuntu:vivid
+FROM alpine:3.3
 
-ENV DEBIAN_FRONTEND noninteractive
-
-RUN apt-get update
-RUN apt-get -y install git
+RUN apk add --update git && rm -rf /var/cache/apk/*
 
 COPY . /
 VOLUME ["/input", "/output", "/cache", "/ssh"]
-CMD ["/scripts/run.sh"]
+CMD ["/bin/run"]
