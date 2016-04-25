@@ -9,7 +9,6 @@ This image provides [main flow](#flow) and some [helper functions](#helper-funct
 |---|
 |  [Particle firmware](https://github.com/spark/firmware-buildpack-builder)  |
 | [HAL](https://github.com/spark/buildpack-hal) / [Legacy](https://github.com/spark/buildpack-0.3.x)   |
-| [Wiring preprocessor](https://github.com/spark/buildpack-wiring-preprocessor) |
 | **Base (you are here)** |
 
 
@@ -24,12 +23,13 @@ $ docker build -t particle/buildpack-$BUILDPACK_IMAGE .
 
 ## Flow
 
-Image entrypoint is [run.sh script](scripts/run.sh). It will:
-1. load helper functions from [lib directory](lib)
-2. Init environment variables with [defaults](hooks/env)
+Image entrypoint is [/bin/run](bin/run). It will:
+
+1. Load helper functions from [lib directory](lib/helpers)
+2. Init environment variables with [defaults](bin/setup-env)
 3. Setup logging
 4. Copy input files to workspace directory
-5. Execute build (by calling `/hooks/build` script)
+5. Execute build (by calling `/bin/build` script)
 6. Cleanup [output](#normalization-of-paths-and-filenames)
 
 ## Inheriting image
@@ -41,15 +41,6 @@ FROM particle/buildpack-base
 
 COPY foo /foo
 ```
-
-### Using hooks
-
-When creating your own buildpack you can create your own hooks in `/hooks` directory:
-
-* `post-env` - used to set up environment variables
-* `pre-build` - prepare workspace before build
-* `build` - invoke build command
-* `post-build` - clean up after build
 
 ### Defined volumes
 
