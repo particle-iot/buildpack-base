@@ -11,14 +11,14 @@ source /bin/setup-env
 exec > >(tee $RUN_LOG)
 exec 2> >(tee $STDERR_LOG)
 
-# Run buildpack
-/bin/build
-
 # Copy input files to workspace
 cp -r $INPUT_DIR/. $WORKSPACE_DIR
 
 # Copy SSH keys
 cp -r /ssh/. /root/.ssh
+
+# Run buildpack
+/bin/build
 
 # Normalize stderr paths (remove all parent dirs)
 find-and-replace-in "$WORKSPACE_DIR/" "" $STDERR_LOG
