@@ -6,9 +6,12 @@ for test_file in /test/*.bats; do
     rm -rf /input/*
     rm -rf /workspace/*
     rm -rf /output/*
-    echo -e "\e[32mRunning ${test_file}\e[0m"
+    echo -e "\e[34mRunning ${test_file}\e[0m"
     bats "$test_file"
-    if [[ "$?" -ne 0 ]]; then
+    if [[ "$?" -eq 0 ]]; then
+      echo -e "\e[32mPassed\e[0m"
+    else
+      echo -e "\e[31mFailed\e[0m"
       exit 1
     fi
   else
