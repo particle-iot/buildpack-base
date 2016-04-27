@@ -1,12 +1,17 @@
 #!/bin/bash
 
 for test_file in /test/*.bats; do
-	rm -rf /input/*
-	rm -rf /workspace/*
-	rm -rf /output/*
-  echo " Running $test_file"
-  bats "$test_file"
-  if [[ "$?" -ne 0 ]]; then
+  if [ -f test_file ]; then
+    rm -rf /input/*
+    rm -rf /workspace/*
+    rm -rf /output/*
+    echo -e "\e[32mRunning $(test_file)\e[0m"
+    bats "$test_file"
+    if [[ "$?" -ne 0 ]]; then
+      exit 1
+    fi
+  else
+    echo -e "\e[31mNo tests found\e[0m"
     exit 1
   fi
 done
