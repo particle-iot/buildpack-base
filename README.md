@@ -79,11 +79,14 @@ Logs `arm-none-eabi-size` of `ELF_FILE` to `memory-use.log` file in output dir.
 
 ## Running tests
 
-Buildpacks can define tests by overriding `/bin/run-tests` script. The tests should:
+Buildpacks can define tests by overriding `/test` directory with [BATS tests](https://github.com/sstephenson/bats). The tests should:
 
 1. Propagate `/input` with test data
 2. Run `/bin/run`
 3. Inspect `/output` and assert when incorrect
+
+Before each BATS file, the `/input`, `/workspace` and `/output` will be cleared.
+BATS can use different languages to do the actual tests (i.e. run `mocha`).
 
 Running tests itself is done by running container without mounted volumes and overriding `CMD`:
 
@@ -91,4 +94,28 @@ Running tests itself is done by running container without mounted volumes and ov
 $ docker run --rm \
   particle/buildpack-foo \
   /bin/run-tests
+```
+
+## Building, running in tests and pushing tagged images in Travis CI
+
+Use following `.travis.yml`:
+
+```yaml
+sudo: required
+services:
+  - docker
+install:
+  - docker login --email=$DOCKER_HUB_EMAIL --username=$DOCKER_HUB_USERNAME --password=$DOCKER_HUB_PASSWORD
+
+before_script:
+  - docker build -t $DOCKER_IMAGE_NAME .
+
+script:
+  - docker run --rm $DOCKER_IMAGE_NAME /bin/run-tests
+
+after_success:
+  - if [ ! -z "$TRAVIS_TAG" ]; then docker tag $DOCKER_IMAGE_NAME:latest $DOCKER_IMAGE_NAME:$TRAVIS_TAG; fi && docker push $DOCKER_IMAGE_NAME
+
+env:
+  - DOCKER_IMAGE_NAME=particle/foo
 ```

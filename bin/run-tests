@@ -1,4 +1,12 @@
 #!/bin/bash
 
-echo "No test script defined"
-exit 1
+for test_file in /test/*.bats; do
+	rm -rf /input/*
+	rm -rf /workspace/*
+	rm -rf /output/*
+  echo " Running $test_file"
+  bats "$test_file"
+  if [[ "$?" -ne 0 ]]; then
+    exit 1
+  fi
+done
