@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/spark/buildpack-base.svg)](https://travis-ci.org/spark/buildpack-base)
 
 Buildpacks inherit and extend other images to separate common flow and logic in OOP manner.
-This image provides [main flow](#flow) and some [helper functions](#helper-functions) that can be used by other images by [inheriting it](#inheriting-image).
+This image provides [main flow/protocol](#flow) and some [helper functions](#helper-functions) that can be used by other images by [inheriting it](#inheriting-image).
 
 | |
 |---|
@@ -76,3 +76,19 @@ Replaces all occurrences of `FROM` to `TO` in `FILE`.
 
 #### `log-size ELF_FILE`
 Logs `arm-none-eabi-size` of `ELF_FILE` to `memory-use.log` file in output dir.
+
+## Running tests
+
+Buildpacks can define tests by overriding `/bin/run-tests` script. The tests should:
+
+1. Propagate `/input` with test data
+2. Run `/bin/run`
+3. Inspect `/output` and assert when incorrect
+
+Running tests itself is done by running container without mounted volumes and overriding `CMD`:
+
+```bash
+$ docker run --rm \
+  particle/buildpack-foo \
+  /bin/run-tests
+```

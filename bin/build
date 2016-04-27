@@ -1,2 +1,4 @@
+#!/bin/bash
+
 echo "No build script defined"
 exit 1
