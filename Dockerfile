@@ -6,5 +6,5 @@ RUN git clone https://github.com/sstephenson/bats.git && \
   rm -r bats
 
 COPY . /
-VOLUME ["/input", "/output", "/cache", "/ssh"]
+VOLUME ["/input", "/output", "/cache", "/ssh", "/log"]
 CMD ["/bin/run"]

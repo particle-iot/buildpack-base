@@ -49,6 +49,7 @@ When running container use `-v` argument to specify local dirs which will be map
 * `/input` - should contain all project files
 * `/output` - after build will contain logs and build artifacts
 * `/cache` - temp directory to store intermediate files
+* `/log` - directory containing run logs
 * `/ssh` - directory containing SSH keys (will be copied to `~/.ssh`)
 
 ### Normalization of paths and filenames
