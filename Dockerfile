@@ -1,4 +1,4 @@
-FROM multiarch/alpine:x86-v3.3
+FROM alpine:3.3
 
 RUN apk add --update git bash && rm -rf /var/cache/apk/*
 RUN git clone https://github.com/sstephenson/bats.git && \
