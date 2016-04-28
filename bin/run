@@ -18,7 +18,7 @@ cp -r $INPUT_DIR/. $WORKSPACE_DIR
 cp -r /ssh/. /root/.ssh
 
 # Run buildpack
-/bin/build
+source /bin/build
 RETURN_VALUE="$?"
 
 # Normalize stderr paths (remove all parent dirs)
