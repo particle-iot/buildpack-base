@@ -21,7 +21,7 @@ $ cd buildpack-$BUILDPACK_IMAGE
 $ docker build -t particle/buildpack-$BUILDPACK_IMAGE .
 ```
 
-## Flow
+## Run script flow
 
 Image entrypoint is [/bin/run](bin/run). It will:
 
@@ -77,6 +77,16 @@ Replaces all occurrences of `FROM` to `TO` in `FILE`.
 
 #### `log-size ELF_FILE`
 Logs `arm-none-eabi-size` of `ELF_FILE` to `memory-use.log` file in output dir.
+
+### Environment variables
+
+#### `INPUT_FROM_STDIN`
+Setting it to `true` will wait on `STDIN` for a tar gzipped file which will be extracted into `/input`.
+
+#### `ARCHIVE_OUTPUT`
+Setting it to `true` will tar gzip `/output` directory into `/output.tar.gz` archive inside of container.
+
+Both variables are used when buildpack is [run by Dray](https://github.com/CenturyLinkLabs/dray#custom-file).
 
 ## Running tests
 

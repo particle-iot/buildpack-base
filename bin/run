@@ -7,6 +7,11 @@ for file in /lib/helpers/*.bash ; do source "$file"; done
 # Setup constants
 source /bin/setup-env
 
+# Read $INPUT_DIR contents from STDIN as tar.gz file
+if [[ "$INPUT_FROM_STDIN" = true ]]; then
+	tar -xzpf - -C $INPUT_DIR 2>/dev/null
+fi
+
 # Start logging to file
 exec > >(tee $RUN_LOG)
 exec 2> >(tee $STDERR_LOG)
@@ -26,8 +31,13 @@ find-and-replace-in "$WORKSPACE_DIR/" "" $STDERR_LOG
 
 TIME_END=`date +%s.%N`
 RUNTIME=`echo "$TIME_END $TIME_START" | awk '{print $1-$2}'`
-echo "Finished in: $RUNTIME seconds"
+# echo "Finished in: $RUNTIME seconds"
 echo $RUNTIME > $ELAPSED_LOG
+
+# Archive output for Dray
+if [[ "$ARCHIVE_OUTPUT" = true ]]; then
+	tar -czf $OUTPUT_ARCHIVE -C $OUTPUT_DIR . 2>/dev/null
+fi
 
 # Exit with buildpack's return value
 exit $RETURN_VALUE
