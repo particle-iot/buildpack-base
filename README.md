@@ -1,6 +1,6 @@
 # Buildpack base
 
-[![Build Status](https://travis-ci.org/spark/buildpack-base.svg)](https://travis-ci.org/spark/buildpack-base)
+[![Build Status](https://travis-ci.org/spark/buildpack-base.svg)](https://travis-ci.org/spark/buildpack-base) [![](https://imagelayers.io/badge/particle/buildpack-base:latest.svg)](https://imagelayers.io/?images=particle/buildpack-base:latest 'Get your own badge on imagelayers.io')
 
 Buildpacks inherit and extend other images to separate common flow and logic in OOP manner.
 This image provides [main flow/protocol](#flow) and some [helper functions](#helper-functions) that can be used by other images by [inheriting it](#inheriting-image).
