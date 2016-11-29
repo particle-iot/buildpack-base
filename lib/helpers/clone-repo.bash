@@ -4,7 +4,7 @@ clone-repo() {
   GIT_COMMIT_ISH=${URL[1]}
 
   if [ ! -d "$2" ]; then
-    git clone $GIT_URL $2
+    git clone --depth 1 $GIT_URL $2
     cd $2
     git fetch --tags
 
