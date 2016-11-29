@@ -3,9 +3,7 @@
 for test_file in /test/*.bats; do
   echo $test_file
   if [ -f $test_file ]; then
-    rm -rf /input/*
-    rm -rf /workspace/*
-    rm -rf /output/*
+    cleanup-tests
     echo -e "\e[34mRunning ${test_file}\e[0m"
     bats "$test_file"
     if [[ "$?" -eq 0 ]]; then
