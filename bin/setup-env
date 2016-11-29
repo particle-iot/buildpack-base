@@ -9,3 +9,5 @@ export RUN_LOG=$LOG_DIR/run.log
 export STDERR_LOG=$LOG_DIR/stderr.log
 export ELAPSED_LOG=$LOG_DIR/elapsed.log
 export OUTPUT_ARCHIVE=/output.tar.gz
+
+mkdir $WORKSPACE_DIR
