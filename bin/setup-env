@@ -10,4 +10,4 @@ export STDERR_LOG=$LOG_DIR/stderr.log
 export ELAPSED_LOG=$LOG_DIR/elapsed.log
 export OUTPUT_ARCHIVE=/output.tar.gz
 
-mkdir $WORKSPACE_DIR
+mkdir -p $WORKSPACE_DIR
