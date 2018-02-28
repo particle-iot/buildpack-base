@@ -8,13 +8,16 @@ for file in /lib/helpers/*.bash ; do source "$file"; done
 source /bin/setup-env
 
 # Read $INPUT_DIR contents from STDIN as tar.gz file
-if [[ "$INPUT_FROM_STDIN" = true ]]; then
-	tar -xzpf - -C $INPUT_DIR 2>/dev/null
-fi
+tar -xzpf - -C $INPUT_DIR 2>/dev/null
 
-# Start logging to file
-exec > >(tee $RUN_LOG)
-exec 2> >(tee $STDERR_LOG)
+# Move stdout to desciptor 9
+exec 9<&1-
+# Close stderr descriptor
+exec 2<&-
+# Redirect stdout to the log file
+exec 1<>$RUN_LOG
+# Redirect stderr to the log file
+exec 2>$STDERR_LOG
 
 # Copy input files to workspace
 cp -r $INPUT_DIR/. $WORKSPACE_DIR
@@ -23,7 +26,8 @@ cp -r $INPUT_DIR/. $WORKSPACE_DIR
 cp -r /ssh/. /root/.ssh
 
 # Run buildpack
-source /bin/build
+set +e
+/bin/build
 RETURN_VALUE="$?"
 
 # Normalize stderr paths (remove all parent dirs)
@@ -34,10 +38,11 @@ RUNTIME=`echo "$TIME_END $TIME_START" | awk '{print $1-$2}'`
 # echo "Finished in: $RUNTIME seconds"
 echo $RUNTIME > $ELAPSED_LOG
 
-# Archive output for Dray
-if [[ "$ARCHIVE_OUTPUT" = true ]]; then
-	tar -czf $OUTPUT_ARCHIVE -C $OUTPUT_DIR . 2>/dev/null
-fi
+# Archive output and send it to stdout
+tar -czf $OUTPUT_ARCHIVE -C $OUTPUT_DIR . 2>/dev/null
+# Restore stdout
+exec 1<&9-
+cat $OUTPUT_ARCHIVE
 
 # Exit with buildpack's return value
 exit $RETURN_VALUE
