@@ -1,14 +1,14 @@
 # Buildpack base
 
-[![Build Status](https://travis-ci.org/spark/buildpack-base.svg)](https://travis-ci.org/spark/buildpack-base) [![](https://imagelayers.io/badge/particle/buildpack-base:latest.svg)](https://imagelayers.io/?images=particle/buildpack-base:latest 'Get your own badge on imagelayers.io')
+[![Build Status](https://travis-ci.org/particle-iot/buildpack-base.svg)](https://travis-ci.org/particle-iot/buildpack-base) [![](https://imagelayers.io/badge/particle/buildpack-base:latest.svg)](https://imagelayers.io/?images=particle/buildpack-base:latest 'Get your own badge on imagelayers.io')
 
 Buildpacks inherit and extend other images to separate common flow and logic in OOP manner.
 This image provides [main flow/protocol](#flow) and some [helper functions](#helper-functions) that can be used by other images by [inheriting it](#inheriting-image).
 
 | |
 |---|
-|  [Particle firmware](https://github.com/spark/firmware-buildpack-builder)  |
-| [HAL](https://github.com/spark/buildpack-hal) / [Legacy](https://github.com/spark/buildpack-0.3.x)   |
+|  [Particle firmware](https://github.com/particle-iot/firmware-buildpack-builder)  |
+| [HAL](https://github.com/particle-iot/buildpack-hal) / [Legacy](https://github.com/particle-iot/buildpack-0.3.x)   |
 | **Base (you are here)** |
 
 
@@ -61,7 +61,7 @@ Outputed firmware binary should be named `firmware.bin` unless compile produces 
 #### `clone-repo REPO_URL CLONE_DIR`
 Will clone `REPO_URL` to `CLONE_DIR` if it doesn't exist.
 
-`REPO_URL` can target tags or branches by using hash notation i.e.: `https://github.com/spark/core-common-lib.git#compile-server2`
+`REPO_URL` can target tags or branches by using hash notation i.e.: `https://github.com/particle-iot/core-common-lib.git#compile-server2`
 
 #### `copy-if-exists FROM TO`
 If `FROM` file exists copy it to `TO`.

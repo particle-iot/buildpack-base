@@ -2,7 +2,7 @@
 
 @test "Cloning repo" {
   source lib/helpers/clone-repo.bash
-  clone-repo https://github.com/spark/buildpack-base.git#0.3.6 /workspace
+  clone-repo https://github.com/particle-iot/buildpack-base.git#0.3.6 /workspace
   cd /workspace
   git status
   # Check if it is a real repo
