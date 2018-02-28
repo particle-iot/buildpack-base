@@ -15,10 +15,7 @@ This image provides [main flow/protocol](#flow) and some [helper functions](#hel
 ## Building image
 
 ```bash
-$ export BUILDPACK_IMAGE=base
-$ git clone "git@github.com:spark/buildpack-${BUILDPACK_IMAGE}.git"
-$ cd buildpack-$BUILDPACK_IMAGE
-$ docker build -t particle/buildpack-$BUILDPACK_IMAGE .
+$ docker-compose build
 ```
 
 ## Run script flow
