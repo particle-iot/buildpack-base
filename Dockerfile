@@ -7,7 +7,8 @@ RUN apt-get update -qy \
   && apt-get install -qy git bash curl bats \
   && apt-get update -qy \
   && apt-get clean && apt-get purge \
-  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+  && ln -s /usr/test /test
 
 VOLUME ["/input", "/output", "/cache", "/ssh", "/log"]
 CMD ["/bin/run"]

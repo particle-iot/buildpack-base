@@ -30,6 +30,7 @@ jobs:
           name: "Build, test, push" 
           shell: /bin/bash
           command: |
+            set -e
             export ARTIFACT_TAG=$(git rev-parse --short HEAD)
             echo "$DOCKERHUB_PASSWORD" | docker login --username $DOCKERHUB_USERNAME --password-stdin
             docker build -t $DOCKER_IMAGE_NAME .
