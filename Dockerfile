@@ -11,4 +11,5 @@ RUN apt-get update -qy \
 
 VOLUME ["/input", "/output", "/cache", "/ssh", "/log"]
 CMD ["/bin/run"]
-COPY . /
+# NOTE: /bin and /lib are symlinks to /usr/bin and /usr/lib
+COPY . /usr/
